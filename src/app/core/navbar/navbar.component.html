@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a routerLink="/home">Juan Encabo</a>
+    </div>
+    
+    <div class="nav-menu" [class.active]="isMenuOpen">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Inicio</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">Sobre mí</a>
+      <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">Proyectos</a>
+      <a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">Habilidades</a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
+    </div>
+    
+    <div class="nav-toggle" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
