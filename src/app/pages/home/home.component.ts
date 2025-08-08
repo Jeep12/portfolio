@@ -44,11 +44,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // Animar el cambio de colores aleatoriamente
     starColors.forEach((color, index) => {
-      if (this.animationTimeline) {
-        this.animationTimeline.add(() => {
-          this.updateConstellationColors(color);
-        }, index * 2); // 2 segundos entre cada cambio
-      }
+      this.animationTimeline!.add(() => {
+        this.updateConstellationColors(color);
+      }, index * 2); // 2 segundos entre cada cambio
     });
   }
 
