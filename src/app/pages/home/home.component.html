@@ -1,45 +1,100 @@
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1 class="hero-title">
-        <span class="greeting">Hola, soy</span>
-        <span class="name">Juan Encabo</span>
-        <span class="title">Full Stack Developer</span>
-      </h1>
-      <p class="hero-description">
-        Estudiante de la Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas (TUDAI).
-        Apasionado por crear aplicaciones web modernas y experiencias de usuario excepcionales.
-      </p>
-      <div class="hero-buttons">
-        <a routerLink="/projects" class="btn btn-primary">Ver Proyectos</a>
-        <a routerLink="/contact" class="btn btn-secondary">Contactar</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="code-animation">
-        <div class="code-line">
-          <span class="keyword">const</span> <span class="variable">developer</span> = {{ '{' }}
-        </div>
-        <div class="code-line indent">
-          <span class="property">name</span>: <span class="string">'Juan Encabo'</span>,
-        </div>
-        <div class="code-line indent">
-          <span class="property">role</span>: <span class="string">'Full Stack Developer'</span>,
-        </div>
-        <div class="code-line indent">
-          <span class="property">passion</span>: <span class="string">'Creating amazing apps'</span>
-        </div>
-        <div class="code-line">{{ '}' }};</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <section class="hero">
+    <app-hero-canvas
+      (buttonClick)="onCanvasButtonClick($event)"
+      (emailCopy)="copyHeroEmail()">
+    </app-hero-canvas>
+  </section>
 
 <section class="features">
   <div class="container">
-    <h2 class="section-title">Stack Tecnológicos</h2>
-    <div class="features-grid">
-      <!-- Aquí irá la grilla de logos de tecnologías -->
+    <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">Stack Tecnológicos</h2>
+    <div class="tech-stacks">
+      <!-- Lenguajes -->
+      <div class="tech-category" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+        <h3 class="category-title"> Lenguajes</h3>
+        <div class="tech-grid">
+          <div class="tech-item" *ngFor="let tech of techStacks.languages; let i = index"
+            [style.--tech-color]="tech.color" data-aos="fade-up" [attr.data-aos-delay]="300 + (i * 50)">
+            <img [src]="getIconSrc(tech)" [alt]="tech.name"
+              class="tech-icon" width="48" height="48" loading="lazy" 
+              [style.object-fit]="'contain'" [style.max-width]="'48px'" [style.max-height]="'48px'"
+              [attr.data-optimized]="'true'">
+            <span class="tech-name">{{ tech.name }}</span>
+            <div class="tech-item-back">
+              <div class="tech-description">{{ tech.name }}</div>
+              <div class="tech-level">Experto</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frameworks y librerías -->
+      <div class="tech-category" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+        <h3 class="category-title"> Frameworks y librerías</h3>
+        <div class="tech-grid">
+          <div class="tech-item" *ngFor="let tech of techStacks.frameworks; let i = index"
+            [style.--tech-color]="tech.color" data-aos="fade-up" [attr.data-aos-delay]="500 + (i * 50)">
+            <img [src]="getIconSrc(tech)" [alt]="tech.name" class="tech-icon"
+              width="48" height="48">
+            <span class="tech-name">{{ tech.name }}</span>
+            <div class="tech-item-back">
+              <div class="tech-description">{{ tech.name }}</div>
+              <div class="tech-level">Avanzado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bases de datos -->
+      <div class="tech-category" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+        <h3 class="category-title"> Bases de datos</h3>
+        <div class="tech-grid">
+          <div class="tech-item" *ngFor="let tech of techStacks.databases; let i = index"
+            [style.--tech-color]="tech.color" data-aos="fade-up" [attr.data-aos-delay]="700 + (i * 50)">
+            <img [src]="getIconSrc(tech)" [alt]="tech.name" class="tech-icon"
+              width="48" height="48">
+            <span class="tech-name">{{ tech.name }}</span>
+            <div class="tech-item-back">
+              <div class="tech-description">{{ tech.name }}</div>
+              <div class="tech-level">Intermedio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Herramientas -->
+      <div class="tech-category" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
+        <h3 class="category-title"> Herramientas</h3>
+        <div class="tech-grid">
+          <div class="tech-item" *ngFor="let tech of techStacks.tools; let i = index" [style.--tech-color]="tech.color"
+            data-aos="fade-up" [attr.data-aos-delay]="900 + (i * 50)">
+            <img [src]="getIconSrc(tech)" [alt]="tech.name" class="tech-icon"
+              width="48" height="48">
+            <span class="tech-name">{{ tech.name }}</span>
+            <div class="tech-item-back">
+              <div class="tech-description">{{ tech.name }}</div>
+              <div class="tech-level">Avanzado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metodologías -->
+      <div class="tech-category" data-aos="fade-up" data-aos-duration="800" data-aos-delay="1000">
+        <h3 class="category-title"> Metodologías / Otras skills</h3>
+        <div class="tech-grid">
+          <div class="tech-item" *ngFor="let tech of techStacks.methodologies; let i = index"
+            [style.--tech-color]="tech.color" data-aos="fade-up" [attr.data-aos-delay]="1100 + (i * 50)">
+            <img [src]="getIconSrc(tech)" [alt]="tech.name" class="tech-icon"
+              width="48" height="48">
+            <span class="tech-name">{{ tech.name }}</span>
+            <div class="tech-item-back">
+              <div class="tech-description">{{ tech.name }}</div>
+              <div class="tech-level">Experto</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

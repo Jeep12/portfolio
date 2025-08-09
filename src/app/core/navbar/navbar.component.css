@@ -2,11 +2,25 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(15, 15, 15, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 255, 195, 0.2);
+  border-bottom: 1px solid var(--border-color);
   z-index: 1000;
   transition: all 0.3s ease;
+  /* Usa directamente las variables del tema */
+  background: var(--background-dark);
+  opacity: 0.95;
+}
+
+/* Tema oscuro explícito */
+[data-theme="dark"] .navbar {
+  background: var(--background-dark) !important;
+  opacity: 0.95;
+}
+
+/* Tema claro */
+[data-theme="light"] .navbar {
+  background: var(--background-light) !important;
+  opacity: 0.95;
 }
 
 .nav-container {
@@ -20,17 +34,17 @@
 }
 
 .nav-logo a {
-  color: #00ffc3;
+  color: var(--primary-color);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 700;
-  text-shadow: 0 0 10px rgba(0, 255, 195, 0.5);
+  text-shadow: var(--shadow-neon);
   transition: all 0.3s ease;
 }
 
 .nav-logo a:hover {
-  color: #fff;
-  text-shadow: 0 0 20px rgba(0, 255, 195, 0.8);
+  color: var(--text-primary);
+  text-shadow: var(--shadow-neon);
 }
 
 .nav-menu {
@@ -40,7 +54,7 @@
 }
 
 .nav-menu a {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -51,9 +65,9 @@
 
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: #00ffc3;
-  background: rgba(0, 255, 195, 0.1);
-  box-shadow: 0 0 15px rgba(0, 255, 195, 0.3);
+  color: var(--primary-color);
+  background: var(--border-color);
+  box-shadow: var(--shadow-neon);
 }
 
 .nav-menu a::after {
@@ -63,7 +77,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: #00ffc3;
+  background: var(--primary-color);
   transition: all 0.3s ease;
   transform: translateX(-50%);
 }
@@ -83,7 +97,7 @@
 .nav-toggle span {
   width: 25px;
   height: 3px;
-  background: #00ffc3;
+  background: var(--primary-color);
   transition: all 0.3s ease;
   border-radius: 2px;
 }
@@ -96,12 +110,26 @@
     left: -100%;
     width: 100%;
     height: calc(100vh - 70px);
-    background: rgba(15, 15, 15, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 2rem;
     transition: left 0.3s ease;
+    /* Usa directamente las variables del tema */
+    background: var(--background-dark);
+    opacity: 0.98;
+  }
+  
+  /* Tema oscuro móvil */
+  [data-theme="dark"] .nav-menu {
+    background: var(--background-dark) !important;
+    opacity: 0.98;
+  }
+  
+  /* Tema claro móvil */
+  [data-theme="light"] .nav-menu {
+    background: var(--background-light) !important;
+    opacity: 0.98;
   }
 
   .nav-menu.active {
@@ -129,5 +157,88 @@
 
   .nav-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
+
+/* Theme Toggle Styles */
+.theme-toggle {
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-track {
+  width: 50px;
+  height: 26px;
+  background: var(--background-light);
+  border: 2px solid var(--border-color);
+  border-radius: 15px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-track.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.theme-toggle-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--text-primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-track.active .theme-toggle-thumb {
+  left: 24px;
+  background: var(--background-dark);
+}
+
+.theme-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.theme-toggle:hover .theme-toggle-track {
+  box-shadow: var(--shadow-neon), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+/* Responsive adjustments for theme toggle */
+@media (max-width: 768px) {
+  .theme-toggle {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  .theme-toggle-track {
+    width: 60px;
+    height: 32px;
+  }
+
+  .theme-toggle-thumb {
+    width: 28px;
+    height: 28px;
+  }
+
+  .theme-toggle-track.active .theme-toggle-thumb {
+    left: 30px;
+  }
+
+  .theme-icon {
+    font-size: 16px;
   }
 }

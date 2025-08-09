@@ -3,10 +3,10 @@
     <div class="about-content">
       <div class="about-text">
         <h1 class="about-title">Sobre mí</h1>
-        <p class="about-subtitle">Full Stack Developer & Estudiante de TUDAI</p>
+        <p class="about-subtitle">Full Stack Developer & Estudiante de <a href="https://exa.unicen.edu.ar/tudai/" target="_blank" class="tudai-link">TUDAI</a></p>
         <div class="about-description">
           <p>
-            Soy estudiante de la Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas (TUDAI) 
+            Soy estudiante de la Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas (<a href="https://exa.unicen.edu.ar/tudai/" target="_blank" class="tudai-link">TUDAI</a>) 
             en la Universidad Nacional del Centro de la Provincia de Buenos Aires. Mi pasión por la tecnología 
             me impulsa a crear aplicaciones web modernas y funcionales.
           </p>
@@ -39,7 +39,7 @@
     <div class="education-grid">
       <div class="education-card">
         <div class="education-icon">🎓</div>
-        <h3>Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas</h3>
+        <h3><a href="https://exa.unicen.edu.ar/tudai/" target="_blank" class="tudai-link">Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas</a></h3>
         <p class="institution">Universidad Nacional del Centro de la Provincia de Buenos Aires</p>
         <p class="period">2023 - En curso</p>
         <p class="description">
@@ -51,30 +51,51 @@
   </div>
 </section>
 
-<section class="experience">
+<section class="academic-timeline">
   <div class="container">
-    <h2 class="section-title">Experiencia</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
+    <h2 class="section-title">Trayectoria Académica - TUDAI</h2>
+    <p class="timeline-subtitle">Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas</p>
+    
+    <div class="academic-timeline-container">
+      <div *ngFor="let year of academicTimeline; let yearIndex = index" class="timeline-item">
+        <div class="timeline-marker">{{ year.year }}</div>
         <div class="timeline-content">
-          <h3>Desarrollo de Proyectos Personales</h3>
-          <p class="period">2023 - Presente</p>
-          <p>
-            Desarrollo de aplicaciones web completas utilizando Angular, Spring Boot y MySQL. 
-            Creación de portafolios, sistemas de gestión y aplicaciones de e-commerce.
-          </p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h3>Estudiante de Desarrollo Web</h3>
-          <p class="period">2023 - Presente</p>
-          <p>
-            Aprendizaje continuo de nuevas tecnologías y frameworks. Participación en proyectos 
-            académicos y colaboración en desarrollo de software.
-          </p>
+          <h3 class="year-title">{{ year.displayYear }}</h3>
+          <p class="year-period">{{ year.semesters.length * 2 }} cuatrimestres académicos</p>
+          
+          <div class="semesters-list">
+            <div *ngFor="let semester of year.semesters; let semesterIndex = index" 
+                 class="semester-item">
+              
+              <div class="semester-header" 
+                   (click)="toggleSemester(yearIndex, semesterIndex)">
+                <div>
+                  <h4 class="semester-title">{{ semester.name }}</h4>
+                  <p class="semester-subjects-count">{{ semester.subjects.length }} materias</p>
+                </div>
+                <div class="expand-icon" 
+                     [class.rotated]="isSemesterExpanded(yearIndex, semesterIndex)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <div class="semester-content" 
+                   [class.visible]="isSemesterExpanded(yearIndex, semesterIndex)">
+                <div class="subjects-grid">
+                  <div *ngFor="let subject of semester.subjects" class="subject-card">
+                    <h5 class="subject-name">{{ subject.name }}</h5>
+                    <div class="concepts-list">
+                      <span *ngFor="let concept of subject.concepts" class="concept-tag">
+                        {{ concept }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

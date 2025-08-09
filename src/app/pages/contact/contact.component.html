@@ -15,7 +15,13 @@
             <div class="contact-icon">📧</div>
             <div class="contact-details">
               <h3>Email</h3>
-              <p>juan.encabo&#64;example.com</p>
+              <p class="email-row">
+                <span class="email-text">{{ contactEmail }}</span>
+                <button type="button" class="copy-btn" (click)="copyEmail()" [disabled]="copied" aria-label="Copiar email">
+                  📋
+                </button>
+                <span class="copied-msg" *ngIf="copied">Copiado</span>
+              </p>
             </div>
           </div>
           
@@ -40,16 +46,16 @@
           <h3>Sígueme en redes</h3>
           <div class="social-icons">
             <a href="https://github.com/juanencabo" target="_blank" class="social-link">
-              <span class="social-icon">🐙</span>
+              <img src="https://cdn.simpleicons.org/github/white" alt="GitHub" class="social-icon" width="24" height="24">
               <span>GitHub</span>
             </a>
             <a href="https://linkedin.com/in/juanencabo" target="_blank" class="social-link">
-              <span class="social-icon">💼</span>
+              <img src="/assets/images/linkedin.png" alt="LinkedIn" class="social-icon" width="24" height="24">
               <span>LinkedIn</span>
             </a>
-            <a href="https://twitter.com/juanencabo" target="_blank" class="social-link">
-              <span class="social-icon">🐦</span>
-              <span>Twitter</span>
+            <a href="https://instagram.com/juanencabo" target="_blank" class="social-link">
+              <img src="https://cdn.simpleicons.org/instagram/white" alt="Instagram" class="social-icon" width="24" height="24">
+              <span>Instagram</span>
             </a>
           </div>
         </div>
